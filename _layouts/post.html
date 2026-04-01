@@ -1,0 +1,165 @@
+---
+layout: default
+---
+
+<div class="post-page">
+
+  <!-- Post Header -->
+  <header class="post-header">
+    <div class="post-header-inner">
+      {% if page.categories %}
+      <div class="post-breadcrumb">
+        <a href="{{ '/' | relative_url }}">Головна</a>
+        <span>›</span>
+        <a href="{{ '/categories/' | relative_url }}#{{ page.categories | first | slugify }}">{{ page.categories | first }}</a>
+      </div>
+      {% endif %}
+      <h1 class="post-title">{{ page.title }}</h1>
+      {% if page.description %}
+      <p class="post-description">{{ page.description }}</p>
+      {% endif %}
+      <div class="post-meta-bar">
+        <time datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: '%d %B %Y' }}
+        </time>
+        {% if page.author %}<span>· {{ page.author }}</span>{% endif %}
+        {% if page.read_time %}<span>· {{ page.read_time }} хв читання</span>{% endif %}
+        {% if page.tags %}
+        <div class="post-tags-bar">
+          {% for tag in page.tags %}
+          <a class="post-tag" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Image -->
+  {% if page.image %}
+  <div class="post-hero-img">
+    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
+  </div>
+  {% endif %}
+
+  <!-- Article -->
+  <div class="post-layout">
+    <!-- Table of Contents (floating, desktop only) -->
+    <aside class="post-toc" id="toc-container">
+      <p class="toc-label">Зміст</p>
+      <div id="toc"></div>
+    </aside>
+
+    <!-- Content -->
+    <article class="post-content e-content">
+      {{ content }}
+    </article>
+  </div>
+
+  <!-- Post Footer -->
+  <footer class="post-footer">
+    <div class="post-footer-inner">
+      {% if page.categories or page.tags %}
+      <div class="post-taxonomy">
+        {% if page.categories %}
+        <div class="taxonomy-group">
+          <span class="taxonomy-label">Категорія:</span>
+          {% for cat in page.categories %}
+          <a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/categories/' | relative_url }}#{{ cat | slugify }}">{{ cat }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if page.tags %}
+        <div class="taxonomy-group">
+          <span class="taxonomy-label">Теги:</span>
+          {% for tag in page.tags %}
+          <a class="taxonomy-badge" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      <!-- Prev / Next -->
+      <nav class="post-nav">
+        {% if page.previous.url %}
+        <a class="post-nav-link post-nav-link--prev" href="{{ page.previous.url | relative_url }}">
+          <span class="nav-dir">← Попередній</span>
+          <span class="nav-title">{{ page.previous.title }}</span>
+        </a>
+        {% else %}<div></div>{% endif %}
+        {% if page.next.url %}
+        <a class="post-nav-link post-nav-link--next" href="{{ page.next.url | relative_url }}">
+          <span class="nav-dir">Наступний →</span>
+          <span class="nav-title">{{ page.next.title }}</span>
+        </a>
+        {% endif %}
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Related Posts -->
+  {% assign related = site.posts | where_exp: "p", "p.url != page.url" | limit: 3 %}
+  {% if related.size > 0 %}
+  <section class="related-posts">
+    <div class="section-inner">
+      <h3 class="related-title">Ще почитати</h3>
+      <div class="posts-grid posts-grid--3">
+        {% for post in related %}
+        <article class="post-card">
+          {% if post.image %}
+          <a class="post-card-img" href="{{ post.url | relative_url }}">
+            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy" />
+          </a>
+          {% else %}
+          <a class="post-card-img post-card-img--empty" href="{{ post.url | relative_url }}">
+            <span>{{ post.categories | first | default: '🏡' }}</span>
+          </a>
+          {% endif %}
+          <div class="post-card-body">
+            <h4 class="post-card-title">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h4>
+            <time>{{ post.date | date: '%d %b %Y' }}</time>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+</div>
+
+<!-- Auto-generate TOC via JS -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const headings = document.querySelectorAll('.post-content h2, .post-content h3');
+    const toc = document.getElementById('toc');
+    if (!toc || headings.length < 3) {
+      document.getElementById('toc-container')?.classList.add('hidden');
+      return;
+    }
+    const ul = document.createElement('ul');
+    headings.forEach((h, i) => {
+      if (!h.id) h.id = 'heading-' + i;
+      const li = document.createElement('li');
+      li.className = h.tagName === 'H3' ? 'toc-sub' : '';
+      li.innerHTML = `<a href="#${h.id}">${h.textContent}</a>`;
+      ul.appendChild(li);
+    });
+    toc.appendChild(ul);
+
+    // Highlight active heading on scroll
+    const links = toc.querySelectorAll('a');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          const active = toc.querySelector(`a[href="#${e.target.id}"]`);
+          active?.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    headings.forEach(h => observer.observe(h));
+  });
+</script>
