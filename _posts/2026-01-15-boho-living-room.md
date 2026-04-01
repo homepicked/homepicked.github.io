@@ -3,11 +3,11 @@ layout: post
 title: "5 ідей для затишної вітальні в стилі бохо"
 description: "Як перетворити звичайну кімнату на тепле гніздечко з характером — без великого бюджету."
 date: 2026-01-15 10:00:00 +0200
-categories: [Дизайн кімнат]
-tags: [бохо, вітальня, декор, Pinterest]
+categories: [room-design]
+tags: [boho, living-room, decor, pinterest]
 image: /assets/img/posts/boho-living-room.jpg
-featured: true        # показати у "Вибрані пости" на головній
-read_time: 6          # хвилини читання (вручну або авто-плагін)
+featured: true
+read_time: 6
 author: Home Picked
 ---
 
