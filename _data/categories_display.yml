@@ -1,40 +1,37 @@
 # _data/categories_display.yml
-# Категорії що відображаються на головній сторінці
-# slug — має збігатись з categories: у твоїх постах
- 
-- name: Дизайн кімнат
-  slug: Дизайн кімнат
+
+- name: Room Design
+  slug: room-design
   icon: 🛋️
-  description: Ідеї планування та стилі — від мінімалізму до бохо
-  url: /categories/#дизайн-кімнат
- 
-- name: Декор
-  slug: Декор
+  description: Layout ideas and styles — from minimalism to boho
+  url: /categories/#room-design
+
+- name: Decor
+  slug: decor
   icon: 🏺
-  description: Статуетки, свічки, рамки та деталі що оживляють простір
-  url: /categories/#декор
- 
-- name: Квіти та рослини
-  slug: Квіти
+  description: Figurines, candles, frames and details that bring a space to life
+  url: /categories/#decor
+
+- name: Flowers & Plants
+  slug: flowers
   icon: 🌿
-  description: Кімнатні рослини, флористика та зелені куточки вдома
-  url: /categories/#квіти
- 
-- name: Кухня
-  slug: Кухня
+  description: Houseplants, floristry and green corners at home
+  url: /categories/#flowers
+
+- name: Kitchen
+  slug: kitchen
   icon: 🍳
-  description: Організація, посуд та затишна атмосфера на кухні
-  url: /categories/#кухня
- 
-- name: Спальня
-  slug: Спальня
+  description: Organisation, cookware and a cozy kitchen atmosphere
+  url: /categories/#kitchen
+
+- name: Bedroom
+  slug: bedroom
   icon: 🌙
-  description: Текстиль, освітлення та все для відпочинку
-  url: /categories/#спальня
- 
-- name: Знахідки
-  slug: Знахідки
+  description: Textiles, lighting and everything for a good rest
+  url: /categories/#bedroom
+
+- name: Finds
+  slug: finds
   icon: ✨
-  description: Цікаві речі для дому з Pinterest та інших джерел
-  url: /categories/#знахідки
- 
+  description: Interesting home items from Pinterest and other sources
+  url: /categories/#finds
