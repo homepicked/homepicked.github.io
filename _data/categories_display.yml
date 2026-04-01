@@ -1,1 +1,40 @@
-
+# _data/categories_display.yml
+# Категорії що відображаються на головній сторінці
+# slug — має збігатись з categories: у твоїх постах
+ 
+- name: Дизайн кімнат
+  slug: Дизайн кімнат
+  icon: 🛋️
+  description: Ідеї планування та стилі — від мінімалізму до бохо
+  url: /categories/#дизайн-кімнат
+ 
+- name: Декор
+  slug: Декор
+  icon: 🏺
+  description: Статуетки, свічки, рамки та деталі що оживляють простір
+  url: /categories/#декор
+ 
+- name: Квіти та рослини
+  slug: Квіти
+  icon: 🌿
+  description: Кімнатні рослини, флористика та зелені куточки вдома
+  url: /categories/#квіти
+ 
+- name: Кухня
+  slug: Кухня
+  icon: 🍳
+  description: Організація, посуд та затишна атмосфера на кухні
+  url: /categories/#кухня
+ 
+- name: Спальня
+  slug: Спальня
+  icon: 🌙
+  description: Текстиль, освітлення та все для відпочинку
+  url: /categories/#спальня
+ 
+- name: Знахідки
+  slug: Знахідки
+  icon: ✨
+  description: Цікаві речі для дому з Pinterest та інших джерел
+  url: /categories/#знахідки
+ 
