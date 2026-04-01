@@ -11,7 +11,7 @@ layout: default
       <div class="post-breadcrumb">
         <a href="{{ '/' | relative_url }}">Головна</a>
         <span>›</span>
-        <a href="{{ '/categories/' | relative_url }}#{{ page.categories | first | slugify }}">{{ page.categories | first }}</a>
+        <a href="{{ '/categories/' | relative_url }}#{{ page.categories | first }}">
       </div>
       {% endif %}
       <h1 class="post-title">{{ page.title }}</h1>
@@ -27,7 +27,7 @@ layout: default
         {% if page.tags %}
         <div class="post-tags-bar">
           {% for tag in page.tags %}
-          <a class="post-tag" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a>
+          <a class="post-tag" href="{{ '/tags/' | relative_url }}#{{ tag }}">{{ tag }}</a>
           {% endfor %}
         </div>
         {% endif %}
@@ -65,7 +65,7 @@ layout: default
         <div class="taxonomy-group">
           <span class="taxonomy-label">Категорія:</span>
           {% for cat in page.categories %}
-          <a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/categories/' | relative_url }}#{{ cat | slugify }}">{{ cat }}</a>
+<a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/categories/' | relative_url }}#{{ cat }}">
           {% endfor %}
         </div>
         {% endif %}
@@ -73,7 +73,7 @@ layout: default
         <div class="taxonomy-group">
           <span class="taxonomy-label">Теги:</span>
           {% for tag in page.tags %}
-          <a class="taxonomy-badge" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a>
+<a class="taxonomy-badge" href="{{ '/tags/' | relative_url }}#{{ tag }}">
           {% endfor %}
         </div>
         {% endif %}
