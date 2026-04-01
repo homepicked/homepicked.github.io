@@ -123,48 +123,7 @@
     {{ content }}
   </main>
 
-  <!-- ═══════════════════ FOOTER ═══════════════════ -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a class="footer-logo" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-      <p class="footer-tagline">{{ site.description }}</p>
-    </div>
-
-    <nav class="footer-nav">
-      <div class="footer-nav-group">
-        <span class="footer-nav-label">Pages</span>
-        <a href="{{ '/' | relative_url }}">Home</a>
-        <a href="{{ '/about/' | relative_url }}">About</a>
-        <a href="{{ '/archives/' | relative_url }}">All posts</a>
-        <a href="{{ '/categories/' | relative_url }}">Categories</a>
-      </div>
-      <div class="footer-nav-group">
-        <span class="footer-nav-label">Topics</span>
-        {% for cat in site.data.categories_display %}
-        <a href="{{ cat.url | relative_url }}">{{ cat.name }}</a>
-        {% endfor %}
-      </div>
-    </nav>
-
-    {% if site.social %}
-    <div class="footer-social">
-      <span class="footer-nav-label">Follow</span>
-      {% if site.social.pinterest %}
-      <a href="{{ site.social.pinterest }}" target="_blank" rel="noopener">Pinterest</a>
-      {% endif %}
-      {% if site.social.instagram %}
-      <a href="{{ site.social.instagram }}" target="_blank" rel="noopener">Instagram</a>
-      {% endif %}
-    </div>
-    {% endif %}
-  </div>
-
-  <div class="footer-bottom">
-    <p>© {{ 'now' | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
-  </div>
-</footer>
-
+  
   <!-- Scripts -->
   <script src="{{ '/assets/js/dist/theme.min.js' | relative_url }}"></script>
   <script>
