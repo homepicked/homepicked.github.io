@@ -183,19 +183,6 @@ layout: default
       </div>
     </nav>
 
-    {% if site.social %}
-    <div class="footer-social">
-      <span class="footer-nav-label">Follow</span>
-      {% if site.social.pinterest %}
-      <a href="{{ site.social.pinterest }}" target="_blank" rel="noopener">Pinterest</a>
-      {% endif %}
-      {% if site.social.instagram %}
-      <a href="{{ site.social.instagram }}" target="_blank" rel="noopener">Instagram</a>
-      {% endif %}
-    </div>
-    {% endif %}
-  </div>
-
   <div class="footer-bottom">
     <p>© {{ 'now' | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
   </div>
