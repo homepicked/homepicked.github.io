@@ -1,60 +1,72 @@
+# _data/categories_display.yml
 - name: Living Room Inspo
   slug: living-room
   icon: 🛋️
   description: Layout ideas, color palettes and furniture inspiration for your living room
-  url: /categories/#living-room
+  url: /category/living-room/
+
 - name: Nursery & Baby Room
   slug: nursery-baby
   icon: 🍼
   description: Sweet and functional ideas for your little one's space
-  url: /categories/#nursery-baby
+  url: /category/nursery-baby/
+
 - name: Kitchen & Dining
   slug: kitchen-dining
   icon: 🍳
   description: Organisation, cookware and cozy kitchen vibes for the heart of your home
-  url: /categories/#kitchen-dining
+  url: /category/kitchen-dining/
+
 - name: Dream Closet
   slug: dream-closet
   icon: 👗
   description: Walk-in goals, wardrobe hacks and storage that actually sparks joy
-  url: /categories/#dream-closet
+  url: /category/dream-closet/
+
 - name: Outdoor & Patio
   slug: outdoor-patio
   icon: 🌿
   description: Balconies, gardens and outdoor corners you never want to leave
-  url: /categories/#outdoor-patio
+  url: /category/outdoor-patio/
+
 - name: Entryway & Hallway
   slug: entryway-hallway
   icon: 🚪
   description: First impressions that make every homecoming feel special
-  url: /categories/#entryway-hallway
+  url: /category/entryway-hallway/
+
 - name: Bedroom Vibes
   slug: bedroom
   icon: 🌙
   description: Textiles, lighting and everything for a restful, beautiful bedroom
-  url: /categories/#bedroom
+  url: /category/bedroom/
+
 - name: Cozy Workspace
   slug: workspace
   icon: 💻
   description: Home office setups and desk inspo for focus and comfort
-  url: /categories/#workspace
+  url: /category/workspace/
+
 - name: Bathroom Goals
   slug: bathroom
   icon: 🛁
   description: Spa-worthy ideas and small bathroom transformations
-  url: /categories/#bathroom
+  url: /category/bathroom/
+
 - name: Seasonal Decor
   slug: seasonal-decor
   icon: 🌸
   description: Holiday and seasonal styling — spring, Easter, Christmas and beyond
-  url: /categories/#seasonal-decor
+  url: /category/seasonal-decor/
+
 - name: Home Glow Up
   slug: home-glow-up
   icon: ✨
   description: Curated home finds and products we actually love
-  url: /categories/#home-glow-up
+  url: /category/home-glow-up/
+
 - name: Home Ideas & Guides
   slug: home-ideas
   icon: 💡
   description: 20 ideas, room makeovers and practical guides for every space
-  url: /categories/#home-ideas
+  url: /category/home-ideas/
