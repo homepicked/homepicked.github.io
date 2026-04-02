@@ -1,25 +1,78 @@
----
-layout: base
----
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'uk' }}" data-mode="{{ site.theme_mode }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    {%- if page.title -%}
+      {{ page.title }} · {{ site.title }}
+    {%- else -%}
+      {{ site.title }} — {{ site.tagline }}
+    {%- endif -%}
+  </title>
+  <meta name="description" content="{{ page.description | default: site.description }}" />
+  <link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ '/assets/css/jekyll-theme-chirpy.css' | relative_url }}" />
+  {% seo %}
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a class="site-brand" href="{{ '/' | relative_url }}">
+      {% if site.avatar %}<img class="brand-avatar" src="{{ site.avatar | relative_url }}" alt="{{ site.title }}" />{% endif %}
+      <span class="brand-name">{{ site.title }}</span>
+    </a>
+    <nav class="site-nav" aria-label="Main menu">
+      <ul class="nav-list">
+        <li><a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Home</a></li>
+        {% for tab in site.tabs %}
+        <li><a class="nav-link {% if page.url contains tab.url %}active{% endif %}" href="{{ tab.url | relative_url }}">{{ tab.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="mode-toggle" aria-label="Toggle theme">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <ul>
+      <li><a href="{{ '/' | relative_url }}">Home</a></li>
+      <li><a href="{{ '/categories/' | relative_url }}">Categories</a></li>
+      <li><a href="{{ '/tags/' | relative_url }}">Tags</a></li>
+      <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main-content">
+
 <style>
 .hp-page { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem 6rem; }
-.hp-page-eyebrow { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-accent, #B8963E); margin-bottom: 0.75rem; }
-.hp-page-title { font-family: var(--font-serif, 'Cormorant Garamond', serif); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; color: var(--color-text-dark, #2C2118); margin-bottom: 1rem; }
-.hp-page-title em { font-style: italic; color: var(--color-brown, #8B6F5E); }
+.hp-page-eyebrow { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: #B8963E; margin-bottom: 0.75rem; }
+.hp-page-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400; color: #2C2118; margin-bottom: 1rem; }
+.hp-page-title em { font-style: italic; color: #8B6F5E; }
 .hp-tags-cloud { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 4rem; }
-.hp-tag-pill { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--color-tan, #C8B49A); color: var(--color-brown, #8B6F5E); padding: 0.4rem 1rem; border-radius: 2px; text-decoration: none; transition: all 0.2s; }
-.hp-tag-pill:hover { background: var(--color-text-dark, #2C2118); color: #fff; border-color: var(--color-text-dark, #2C2118); }
+.hp-tag-pill { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid #C8B49A; color: #8B6F5E; padding: 0.4rem 1rem; border-radius: 2px; text-decoration: none; transition: all 0.2s; }
+.hp-tag-pill:hover { background: #2C2118; color: #fff; border-color: #2C2118; }
 .hp-tag-count { opacity: 0.6; font-size: 0.65rem; }
 .hp-tag-section { margin-bottom: 4rem; }
-.hp-tag-section-title { font-family: var(--font-serif, 'Cormorant Garamond', serif); font-size: 1.6rem; font-weight: 300; color: var(--color-text-dark, #2C2118); margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--color-sand, #E8DDD0); }
-.hp-tag-section-title span { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-gold, #B8963E); vertical-align: middle; margin-left: 0.75rem; }
+.hp-tag-section-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 400; color: #2C2118; margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid #E8DDD0; }
+.hp-tag-section-title span { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #B8963E; vertical-align: middle; margin-left: 0.75rem; }
 .hp-post-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
 .hp-post-item { text-decoration: none; color: inherit; }
-.hp-post-item-img { aspect-ratio: 1/1; overflow: hidden; background: var(--color-sand, #E8DDD0); margin-bottom: 0.75rem; border-radius: 2px; }
+.hp-post-item-img { aspect-ratio: 1/1; overflow: hidden; background: #E8DDD0; margin-bottom: 0.75rem; border-radius: 2px; }
 .hp-post-item-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
 .hp-post-item:hover img { transform: scale(1.05); }
-.hp-post-item-title { font-family: var(--font-serif, 'Cormorant Garamond', serif); font-size: 1rem; color: var(--color-text-dark, #2C2118); line-height: 1.35; }
-.hp-post-item-date { font-size: 0.7rem; color: var(--color-muted, #8C7B6E); margin-top: 0.25rem; }
+.hp-post-item-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: #2C2118; line-height: 1.35; }
+.hp-post-item-date { font-size: 0.7rem; color: #8C7B6E; margin-top: 0.25rem; }
 @media (max-width: 900px) { .hp-post-list { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 600px) { .hp-post-list { grid-template-columns: 1fr 1fr; } }
 </style>
@@ -27,32 +80,22 @@ layout: base
 <div class="hp-page">
   <p class="hp-page-eyebrow">Browse</p>
   <h1 class="hp-page-title">All <em>Tags</em></h1>
-
   <div class="hp-tags-cloud">
     {% for tag in site.tags %}
       {% assign tag_id = tag[0] | slugify %}
-      <a href="#{{ tag_id }}" class="hp-tag-pill">
-        {{ tag[0] }} <span class="hp-tag-count">{{ tag[1].size }}</span>
-      </a>
+      <a href="#{{ tag_id }}" class="hp-tag-pill">{{ tag[0] }} <span class="hp-tag-count">{{ tag[1].size }}</span></a>
     {% endfor %}
   </div>
-
   {% for tag in site.tags %}
     {% assign tag_id = tag[0] | slugify %}
     <div class="hp-tag-section" id="{{ tag_id }}">
-      <h2 class="hp-tag-section-title">
-        #{{ tag[0] }}
-        <span>{{ tag[1].size }} {% if tag[1].size == 1 %}post{% else %}posts{% endif %}</span>
-      </h2>
+      <h2 class="hp-tag-section-title">#{{ tag[0] }}<span>{{ tag[1].size }} {% if tag[1].size == 1 %}post{% else %}posts{% endif %}</span></h2>
       <div class="hp-post-list">
         {% for post in tag[1] %}
           <a href="{{ post.url }}" class="hp-post-item">
             <div class="hp-post-item-img">
-              {% if post.image %}
-                <img src="{{ post.image }}" alt="{{ post.title }}" loading="lazy" />
-              {% else %}
-                <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop" alt="{{ post.title }}" loading="lazy" />
-              {% endif %}
+              {% if post.image %}<img src="{{ post.image }}" alt="{{ post.title }}" loading="lazy" />
+              {% else %}<img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop" alt="{{ post.title }}" loading="lazy" />{% endif %}
             </div>
             <p class="hp-post-item-title">{{ post.title }}</p>
             <p class="hp-post-item-date">{{ post.date | date: "%d %b %Y" }}</p>
@@ -62,3 +105,65 @@ layout: base
     </div>
   {% endfor %}
 </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="footer-logo" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <p class="footer-tagline">{{ site.description }}</p>
+    </div>
+    <nav class="footer-nav">
+      <div class="footer-nav-group">
+        <span class="footer-nav-label">Pages</span>
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+        <a href="{{ '/archives/' | relative_url }}">All posts</a>
+        <a href="{{ '/categories/' | relative_url }}">Categories</a>
+      </div>
+      <div class="footer-nav-group">
+        <span class="footer-nav-label">Topics</span>
+        {% for cat in site.data.categories_display %}
+        <a href="{{ cat.url | relative_url }}">{{ cat.name }}</a>
+        {% endfor %}
+      </div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>© {{ 'now' | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="{{ '/assets/js/dist/theme.min.js' | relative_url }}"></script>
+<script>
+  const modeBtn = document.getElementById('mode-toggle');
+  const html = document.documentElement;
+  const saved = localStorage.getItem('theme-mode');
+  if (saved) html.setAttribute('data-mode', saved);
+  modeBtn?.addEventListener('click', () => {
+    const next = html.getAttribute('data-mode') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-mode', next);
+    localStorage.setItem('theme-mode', next);
+  });
+  const burger = document.getElementById('nav-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  burger?.addEventListener('click', () => {
+    const open = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!open));
+    mobileNav.setAttribute('aria-hidden', String(open));
+    mobileNav.classList.toggle('open', !open);
+    burger.classList.toggle('open', !open);
+  });
+  const header = document.getElementById('site-header');
+  let lastY = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 60);
+    header.classList.toggle('hidden', y > lastY + 10 && y > 200);
+    header.classList.toggle('visible', y < lastY - 10);
+    lastY = y;
+  }, { passive: true });
+</script>
+</body>
+</html>
