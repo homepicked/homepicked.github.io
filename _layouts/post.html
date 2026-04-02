@@ -11,7 +11,7 @@ layout: default
       <div class="post-breadcrumb">
         <a href="{{ '/' | relative_url }}">Головна</a>
         <span>›</span>
-        <a href="{{ '/categories/' | relative_url }}#{{ page.categories | first }}">
+        <a href="{{ '/category/' | append: (page.categories | first) | relative_url }}/">{{ page.categories | first }}</a>
       </div>
       {% endif %}
       <h1 class="post-title">{{ page.title }}</h1>
@@ -65,7 +65,7 @@ layout: default
         <div class="taxonomy-group">
           <span class="taxonomy-label">Категорія:</span>
           {% for cat in page.categories %}
-<a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/categories/' | relative_url }}#{{ cat }}">
+          <a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/category/' | append: cat | relative_url }}/">{{ cat }}</a>
           {% endfor %}
         </div>
         {% endif %}
