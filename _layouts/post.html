@@ -50,19 +50,19 @@ layout: default
   </div>
 
   <!-- Post Footer -->
- <footer class="post-footer">
+<footer class="post-footer">
   <div class="post-footer-inner">
     
     <div class="post-taxonomy">
       <div class="taxonomy-group">
-  <span class="taxonomy-label">Category:</span>
-  {% if page.categories.size > 0 %}
-    {% assign cat_name = page.categories.first %}
-    <a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/category/' | append: (cat_name | slugify) | relative_url }}">
-      {{ cat_name }}
-    </a>
-  {% endif %}
-</div>
+        <span class="taxonomy-label">Category:</span>
+        {% if page.categories.size > 0 %}
+          {% assign cat_name = page.categories.first %}
+          <a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/category/' | append: (cat_name | slugify) | relative_url }}">
+            {{ cat_name }}
+          </a>
+        {% endif %}
+      </div>
     </div>
 
     <nav class="post-nav">
@@ -72,6 +72,7 @@ layout: default
           <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
         {% endif %}
       </div>
+      
       <div class="post-nav-next">
         {% if page.next %}
           <span class="nav-label">Next Post</span>
