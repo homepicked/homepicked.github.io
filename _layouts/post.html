@@ -24,6 +24,14 @@ layout: default
       <div class="post-meta-bar">
         {% if page.author %}<span>{{ page.author }}</span>{% endif %}
       </div>
+       <div class="post-taxonomy">
+        <span class="taxonomy-label">Category:</span>
+        {% if page.categories.size > 0 %}
+          <a class="taxonomy-badge" href="{{ '/category/' | append: (cat_name | slugify) | relative_url }}">
+            {{ cat_name }}
+          </a>
+        {% endif %}
+      </div>
     </div>
   </header>
 
@@ -41,14 +49,7 @@ layout: default
     </article>
 
     <footer class="post-footer">
-      <div class="post-taxonomy">
-        <span class="taxonomy-label">Category:</span>
-        {% if page.categories.size > 0 %}
-          <a class="taxonomy-badge" href="{{ '/category/' | append: (cat_name | slugify) | relative_url }}">
-            {{ cat_name }}
-          </a>
-        {% endif %}
-      </div>
+     
     
       <nav class="post-nav">
         {% if page.previous %}
