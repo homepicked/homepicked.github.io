@@ -120,6 +120,40 @@
     {{ content }}
   </main>
 
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    
+    <div class="footer-brand">
+      <a class="footer-logo" href="{{ '/' | relative_url }}">
+        {{ site.title }}
+      </a>
+      <p class="footer-tagline">{{ site.description }}</p>
+    </div>
+
+    <nav class="footer-nav">
+      <div class="footer-nav-group">
+        <span class="footer-nav-label">Explore</span>
+        <div class="footer-nav-links">
+          <a href="{{ '/' | relative_url }}">Home</a>
+          <a href="{{ '/about/' | relative_url }}">About Us</a>
+        </div>
+      </div>
+
+      <div class="footer-nav-group">
+        <span class="footer-nav-label">Resources</span>
+        <div class="footer-nav-links">
+          <a href="{{ '/archives/' | relative_url }}">Archive</a>
+          <a href="{{ '/categories/' | relative_url }}">Categories</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© {{ 'now' | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
+  </div>
+</footer>
 
   <!-- Scripts -->
   <script src="{{ '/assets/js/dist/theme.min.js' | relative_url }}"></script>
