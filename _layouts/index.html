@@ -77,7 +77,7 @@ layout: default
         <div class="card-body">
           {% if post.categories %}
           {% assign cat_first = post.categories | first %}
-          <a class="card-category" href="{{ '/categories/' | relative_url }}#{{ cat_first | slugify }}">
+          <a class="card-category" href="{{ '/category/' | append: cat_first | relative_url }}/">
             {{ cat_first }}
           </a>
           {% endif %}
@@ -122,7 +122,7 @@ layout: default
         <div class="post-card-body">
           {% if post.categories %}
           {% assign cat_slug = post.categories | first | slugify %}
-          <a class="post-cat-badge" href="{{ '/categories/' | relative_url }}#{{ cat_slug }}">
+          <a class="post-cat-badge" href="{{ '/category/' | append: (post.categories | first) | relative_url }}/">
             {{ post.categories | first }}
           </a>
           {% endif %}
