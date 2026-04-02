@@ -11,7 +11,7 @@ layout: default
       <div class="post-breadcrumb">
         <a href="{{ '/' | relative_url }}">Home</a>
         <span>›</span>
-        <a href="{{ '/categories/' | relative_url }}{{ page.categories | first }}">
+        <a href="{{ '/category/' | relative_url }}{{ page.categories | first }}">
       </div>
       {% endif %}
       <h1 class="post-title">{{ page.title }}</h1>
@@ -24,13 +24,6 @@ layout: default
         </time>
         {% if page.author %}<span>· {{ page.author }}</span>{% endif %}
         {% if page.read_time %}<span>· {{ page.read_time }} min reading</span>{% endif %}
-        {% if page.tags %}
-        <div class="post-tags-bar">
-          {% for tag in page.tags %}
-          <a class="post-tag" href="{{ '/tags/' | relative_url }}{{ tag }}">{{ tag }}</a>
-          {% endfor %}
-        </div>
-        {% endif %}
       </div>
     </div>
   </header>
@@ -63,17 +56,9 @@ layout: default
       <div class="post-taxonomy">
         {% if page.categories %}
         <div class="taxonomy-group">
-          <span class="taxonomy-label">Categoru:</span>
+          <span class="taxonomy-label">Category:</span>
           {% for cat in page.categories %}
-<a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/categories/' | relative_url }}{{ cat }}">
-          {% endfor %}
-        </div>
-        {% endif %}
-        {% if page.tags %}
-        <div class="taxonomy-group">
-          <span class="taxonomy-label">Tags:</span>
-          {% for tag in page.tags %}
-<a class="taxonomy-badge" href="{{ '/tags/' | relative_url }}{{ tag }}">
+<a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/category/' | relative_url }}{{ cat }}">
           {% endfor %}
         </div>
         {% endif %}
