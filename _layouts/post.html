@@ -11,7 +11,7 @@ layout: default
       <div class="post-breadcrumb">
         <a href="{{ '/' | relative_url }}">Головна</a>
         <span>›</span>
-        <a href="{{ '/category/' | append: (page.categories | first) | relative_url }}/">{{ page.categories | first }}</a>
+        <a href="{{ '/categories/' | relative_url }}#{{ page.categories | first }}">
       </div>
       {% endif %}
       <h1 class="post-title">{{ page.title }}</h1>
@@ -44,16 +44,16 @@ layout: default
 
   <!-- Article -->
   <div class="post-layout">
+    <!-- Content -->
+    <article class="post-content e-content">
+      {{ content }}
+    </article>
+
     <!-- Table of Contents (floating, desktop only) -->
     <aside class="post-toc" id="toc-container">
       <p class="toc-label">Зміст</p>
       <div id="toc"></div>
     </aside>
-
-    <!-- Content -->
-    <article class="post-content e-content">
-      {{ content }}
-    </article>
   </div>
 
   <!-- Post Footer -->
@@ -65,7 +65,7 @@ layout: default
         <div class="taxonomy-group">
           <span class="taxonomy-label">Категорія:</span>
           {% for cat in page.categories %}
-          <a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/category/' | append: cat | relative_url }}/">{{ cat }}</a>
+<a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/categories/' | relative_url }}#{{ cat }}">
           {% endfor %}
         </div>
         {% endif %}
