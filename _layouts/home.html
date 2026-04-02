@@ -76,7 +76,7 @@ layout: default
         {% endif %}
         <div class="card-body">
           {% if post.categories %}
-          <a class="card-category" href="{{ '/categories/' | relative_url }}#{{ post.categories | first }}">
+          <a class="card-category" href="{{ '/category/' | append: (post.categories | first) | relative_url }}/">
             {{ post.categories | first }}
           </a>
           {% endif %}
@@ -120,7 +120,7 @@ layout: default
         {% endif %}
         <div class="post-card-body">
           {% if post.categories %}
-          <a class="post-cat-badge" href="{{ '/categories/' | relative_url }}#{{ post.categories | first }}">
+          <a class="post-cat-badge" href="{{ '/category/' | append: (post.categories | first) | relative_url }}/">
             {{ post.categories | first }}
           </a>
           {% endif %}
@@ -187,4 +187,3 @@ layout: default
     <p>© {{ 'now' | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
   </div>
 </footer>
-
