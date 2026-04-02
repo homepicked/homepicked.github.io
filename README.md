@@ -11,6 +11,7 @@ When installing Chirpy through [RubyGems.org][gem], Jekyll can only read a subse
 
 To unlock all features, the following files must be present in your Jekyll site:
 
+
 ```shell
 .
 ├── _config.yml
