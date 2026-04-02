@@ -4,104 +4,88 @@ layout: default
 
 <div class="post-page">
 
-  <!-- Post Header -->
   <header class="post-header">
     <div class="post-header-inner">
       {% if page.categories %}
-      <div class="post-breadcrumb">
+      <nav class="post-breadcrumb">
         <a href="{{ '/' | relative_url }}">Home</a>
-        <span>›</span>
-        <a href="{{ '/category/' | relative_url }}{{ page.categories | first }}">
-      </div>
+        <span class="sep">›</span>
+        {% assign cat_name = page.categories.first %}
+        <a href="{{ '/category/' | append: (cat_name | slugify) | relative_url }}">{{ cat_name }}</a>
+      </nav>
       {% endif %}
+      
       <h1 class="post-title">{{ page.title }}</h1>
+      
       {% if page.description %}
       <p class="post-description">{{ page.description }}</p>
       {% endif %}
+      
       <div class="post-meta-bar">
         <time datetime="{{ page.date | date_to_xmlschema }}">
           {{ page.date | date: '%d %B %Y' }}
         </time>
         {% if page.author %}<span>· {{ page.author }}</span>{% endif %}
-        {% if page.read_time %}<span>· {{ page.read_time }} хв читання</span>{% endif %}
+        {% if page.read_time %}<span>· {{ page.read_time }} min read</span>{% endif %}
       </div>
     </div>
   </header>
 
-  <!-- Hero Image -->
   {% if page.image %}
-  <div class="post-hero-img">
-    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
+  <div class="post-hero-container">
+    <div class="post-hero-img">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
+    </div>
   </div>
   {% endif %}
 
-  <!-- Article -->
-  <div class="post-layout">
-    <!-- Content -->
+  <main class="post-main">
     <article class="post-content e-content">
       {{ content }}
     </article>
 
-    <!-- Table of Contents (floating, desktop only) -->
-    <aside class="post-toc" id="toc-container">
-      <p class="toc-label">Зміст</p>
-      <div id="toc"></div>
-    </aside>
-  </div>
-
-  <!-- Post Footer -->
-<footer class="post-footer">
-  <div class="post-footer-inner">
-    
-    <div class="post-taxonomy">
-      <div class="taxonomy-group">
+    <footer class="post-footer">
+      <div class="post-taxonomy">
         <span class="taxonomy-label">Category:</span>
         {% if page.categories.size > 0 %}
-          {% assign cat_name = page.categories.first %}
-          <a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/category/' | append: (cat_name | slugify) | relative_url }}">
+          <a class="taxonomy-badge" href="{{ '/category/' | append: (cat_name | slugify) | relative_url }}">
             {{ cat_name }}
           </a>
         {% endif %}
       </div>
-    </div>
 
-    <nav class="post-nav">
-      <div class="post-nav-prev">
-        {% if page.previous %}
-          <span class="nav-label">Previous Post</span>
-          <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
-        {% endif %}
-      </div>
-      
-      <div class="post-nav-next">
-        {% if page.next %}
-          <span class="nav-label">Next Post</span>
-          <a href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a>
-        {% endif %}
-      </div>
-    </nav>
-    
-  </div>
-</footer>
+      <nav class="post-nav">
+        <div class="post-nav-item prev">
+          {% if page.previous %}
+            <span class="nav-label">Previous</span>
+            <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
+          {% endif %}
+        </div>
+        <div class="post-nav-item next">
+          {% if page.next %}
+            <span class="nav-label">Next</span>
+            <a href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a>
+          {% endif %}
+        </div>
+      </nav>
+    </footer>
+  </main>
 
-  <!-- Related Posts -->
   {% assign related = site.posts | where_exp: "p", "p.url != page.url" | limit: 3 %}
   {% if related.size > 0 %}
   <section class="related-posts">
     <div class="section-inner">
-      <h3 class="related-title">Ще почитати</h3>
-      <div class="posts-grid posts-grid--3">
+      <h3 class="related-title">Read More</h3>
+      <div class="posts-grid">
         {% for post in related %}
         <article class="post-card">
-          {% if post.image %}
           <a class="post-card-img" href="{{ post.url | relative_url }}">
-            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy" />
+            {% if post.image %}
+              <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy" />
+            {% else %}
+              <div class="img-placeholder">🏡</div>
+            {% endif %}
           </a>
-          {% else %}
-          <a class="post-card-img post-card-img--empty" href="{{ post.url | relative_url }}">
-            <span>{{ post.categories | first | default: '🏡' }}</span>
-          </a>
-          {% endif %}
           <div class="post-card-body">
             <h4 class="post-card-title">
               <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -115,71 +99,3 @@ layout: default
   </section>
   {% endif %}
 </div>
-
-<footer class="site-footer">
-  <div class="footer-inner">
-    
-    <div class="footer-brand">
-      <a class="footer-logo" href="{{ '/' | relative_url }}">
-        {{ site.title }}
-      </a>
-      <p class="footer-tagline">{{ site.description }}</p>
-    </div>
-
-    <nav class="footer-nav">
-      <div class="footer-nav-group">
-        <span class="footer-nav-label">Explore</span>
-        <div class="footer-nav-links">
-          <a href="{{ '/' | relative_url }}">Home</a>
-          <a href="{{ '/about/' | relative_url }}">About Us</a>
-        </div>
-      </div>
-
-      <div class="footer-nav-group">
-        <span class="footer-nav-label">Resources</span>
-        <div class="footer-nav-links">
-          <a href="{{ '/archives/' | relative_url }}">Archive</a>
-          <a href="{{ '/categories/' | relative_url }}">Categories</a>
-        </div>
-      </div>
-    </nav>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© {{ 'now' | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
-  </div>
-</footer>
-
-<!-- Auto-generate TOC via JS -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const headings = document.querySelectorAll('.post-content h2, .post-content h3');
-    const toc = document.getElementById('toc');
-    if (!toc || headings.length < 3) {
-      document.getElementById('toc-container')?.classList.add('hidden');
-      return;
-    }
-    const ul = document.createElement('ul');
-    headings.forEach((h, i) => {
-      if (!h.id) h.id = 'heading-' + i;
-      const li = document.createElement('li');
-      li.className = h.tagName === 'H3' ? 'toc-sub' : '';
-      li.innerHTML = `<a href="#${h.id}">${h.textContent}</a>`;
-      ul.appendChild(li);
-    });
-    toc.appendChild(ul);
-
-    // Highlight active heading on scroll
-    const links = toc.querySelectorAll('a');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          links.forEach(l => l.classList.remove('active'));
-          const active = toc.querySelector(`a[href="#${e.target.id}"]`);
-          active?.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-20% 0px -70% 0px' });
-    headings.forEach(h => observer.observe(h));
-  });
-</script>
