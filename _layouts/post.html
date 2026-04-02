@@ -27,7 +27,7 @@ layout: default
         {% if page.tags %}
         <div class="post-tags-bar">
           {% for tag in page.tags %}
-          <a class="post-tag" href="{{ '/tags/' | relative_url }}/{{ tag }}">{{ tag }}</a>
+          <a class="post-tag" href="{{ '/tags/' | relative_url }}{{ tag }}">{{ tag }}</a>
           {% endfor %}
         </div>
         {% endif %}
