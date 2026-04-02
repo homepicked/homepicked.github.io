@@ -24,13 +24,6 @@ layout: default
         </time>
         {% if page.author %}<span>· {{ page.author }}</span>{% endif %}
         {% if page.read_time %}<span>· {{ page.read_time }} хв читання</span>{% endif %}
-        {% if page.tags %}
-        <div class="post-tags-bar">
-          {% for tag in page.tags %}
-          <a class="post-tag" href="{{ '/tags/' | relative_url }}{{ tag }}">{{ tag }}</a>
-          {% endfor %}
-        </div>
-        {% endif %}
       </div>
     </div>
   </header>
