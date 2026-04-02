@@ -162,28 +162,35 @@ layout: default
 <!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer class="site-footer">
   <div class="footer-inner">
+    
     <div class="footer-brand">
-      <a class="footer-logo" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <a class="footer-logo" href="{{ '/' | relative_url }}">
+        <strong>{{ site.title }}</strong>
+      </a>
       <p class="footer-tagline">{{ site.description }}</p>
     </div>
 
     <nav class="footer-nav">
       <div class="footer-nav-group">
-        <span class="footer-nav-label">Pages</span>
+        <span class="footer-nav-label">Explore</span>
         <a href="{{ '/' | relative_url }}">Home</a>
-        <a href="{{ '/about/' | relative_url }}">About</a>
-        <a href="{{ '/archives/' | relative_url }}">All posts</a>
+        <a href="{{ '/about/' | relative_url }}">About Us</a>
+      </div>
+
+      <div class="footer-nav-group">
+        <span class="footer-nav-label">Resources</span>
+        <a href="{{ '/archives/' | relative_url }}">Archive</a>
         <a href="{{ '/categories/' | relative_url }}">Categories</a>
       </div>
-      <div class="footer-nav-group">
-        <span class="footer-nav-label">Topics</span>
-        {% for cat in site.data.categories_display %}
-        <a href="{{ cat.url | relative_url }}">{{ cat.name }}</a>
-        {% endfor %}
-      </div>
     </nav>
+  </div>
 
   <div class="footer-bottom">
-    <p>© {{ 'now' | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
+    <div class="footer-bottom-content">
+      <p class="copyright">© {{ 'now' | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
+      <div class="footer-meta">
+        <a href="{{ '/feed.xml' | relative_url }}">RSS Feed</a>
+      </div>
+    </div>
   </div>
 </footer>
