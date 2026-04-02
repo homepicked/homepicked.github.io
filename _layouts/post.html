@@ -49,22 +49,24 @@ layout: default
           </a>
         {% endif %}
       </div>
-    {% if page.previous and page.next %}
+    
       <nav class="post-nav">
+        {% if page.previous %}
         <div class="post-nav-item prev">
-          {% if page.previous %}
+          
             <span class="nav-label">Previous</span>
             <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
-          {% endif %}
+         
         </div>
-        <div class="post-nav-item next">
+         {% endif %}
           {% if page.next %}
+        <div class="post-nav-item next">
             <span class="nav-label">Next</span>
             <a href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a>
-          {% endif %}
         </div>
+          {% endif %}
       </nav>
-      {% endif %}
+
     </footer>
   </main>
 
