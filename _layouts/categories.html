@@ -30,7 +30,7 @@ layout: base
 @media (max-width: 480px) { .hp-cats-grid { grid-template-columns: 1fr; } .hp-post-list { grid-template-columns: 1fr; } }
 </style>
 
-{% assign cat_images = "https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1615873968403-89e068629265?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1565183928294-7d22f26f79b5?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=450&fit=crop" | split: "," %}
+{% assign cat_images = "https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1615873968403-89e068629265?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1565183928294-7d22f26f79b5?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1502005097973-6a7082348e02?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=450&fit=crop" | split: "," %}
 
 <div class="hp-page">
   <p class="hp-page-eyebrow">Explore</p>
@@ -40,7 +40,8 @@ layout: base
     {% assign cat_index = 0 %}
     {% for category in site.categories %}
       {% assign img = cat_images[cat_index] %}
-      <a href="#cat-{{ category[0] | slugify }}" class="hp-cat-card">
+      {% assign cat_id = category[0] | slugify %}
+      <a href="#{{ cat_id }}" class="hp-cat-card">
         <img src="{{ img }}" alt="{{ category[0] }}" loading="lazy" />
         <div class="hp-cat-overlay"></div>
         <div class="hp-cat-label">
@@ -56,7 +57,8 @@ layout: base
 <div class="hp-cat-posts">
   <div class="hp-cat-posts-inner">
     {% for category in site.categories %}
-      <div class="hp-cat-section" id="cat-{{ category[0] | slugify }}">
+      {% assign cat_id = category[0] | slugify %}
+      <div class="hp-cat-section" id="{{ cat_id }}">
         <h2 class="hp-cat-section-title">{{ category[0] }}</h2>
         {% if category[1].size > 0 %}
           <div class="hp-post-list">

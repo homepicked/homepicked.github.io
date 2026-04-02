@@ -8,7 +8,7 @@ layout: base
 .hp-page-title em { font-style: italic; color: var(--color-brown, #8B6F5E); }
 .hp-tags-cloud { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 4rem; }
 .hp-tag-pill { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--color-tan, #C8B49A); color: var(--color-brown, #8B6F5E); padding: 0.4rem 1rem; border-radius: 2px; text-decoration: none; transition: all 0.2s; }
-.hp-tag-pill:hover, .hp-tag-pill.active { background: var(--color-text-dark, #2C2118); color: #fff; border-color: var(--color-text-dark, #2C2118); }
+.hp-tag-pill:hover { background: var(--color-text-dark, #2C2118); color: #fff; border-color: var(--color-text-dark, #2C2118); }
 .hp-tag-count { opacity: 0.6; font-size: 0.65rem; }
 .hp-tag-section { margin-bottom: 4rem; }
 .hp-tag-section-title { font-family: var(--font-serif, 'Cormorant Garamond', serif); font-size: 1.6rem; font-weight: 300; color: var(--color-text-dark, #2C2118); margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--color-sand, #E8DDD0); }
@@ -30,14 +30,16 @@ layout: base
 
   <div class="hp-tags-cloud">
     {% for tag in site.tags %}
-      <a href="#tag-{{ tag[0] | slugify }}" class="hp-tag-pill">
+      {% assign tag_id = tag[0] | slugify %}
+      <a href="#{{ tag_id }}" class="hp-tag-pill">
         {{ tag[0] }} <span class="hp-tag-count">{{ tag[1].size }}</span>
       </a>
     {% endfor %}
   </div>
 
   {% for tag in site.tags %}
-    <div class="hp-tag-section" id="tag-{{ tag[0] | slugify }}">
+    {% assign tag_id = tag[0] | slugify %}
+    <div class="hp-tag-section" id="{{ tag_id }}">
       <h2 class="hp-tag-section-title">
         #{{ tag[0] }}
         <span>{{ tag[1].size }} {% if tag[1].size == 1 %}post{% else %}posts{% endif %}</span>
