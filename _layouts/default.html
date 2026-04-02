@@ -55,7 +55,7 @@
       <!-- Desktop Nav -->
       <nav class="site-nav" aria-label="Головне меню">
         <ul class="nav-list">
-          <li><a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Головна</a></li>
+          <li><a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Home</a></li>
           {% for tab in site.tabs %}
           <li>
             <a class="nav-link {% if page.url contains tab.url %}active{% endif %}"
