@@ -1,25 +1,83 @@
 ---
-layout: default
+layout: base
 ---
+<style>
+.hp-page { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem 6rem; }
+.hp-page-eyebrow { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-accent, #B8963E); margin-bottom: 0.75rem; }
+.hp-page-title { font-family: var(--font-serif, 'Cormorant Garamond', serif); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; color: var(--color-text-dark, #2C2118); margin-bottom: 3rem; }
+.hp-page-title em { font-style: italic; color: var(--color-brown, #8B6F5E); }
+.hp-cats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.hp-cat-card { position: relative; aspect-ratio: 4/3; overflow: hidden; border-radius: 2px; text-decoration: none; display: block; }
+.hp-cat-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+.hp-cat-card:hover img { transform: scale(1.05); }
+.hp-cat-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(44,33,24,0.75) 0%, transparent 55%); }
+.hp-cat-label { position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; }
+.hp-cat-name { font-family: var(--font-serif, 'Cormorant Garamond', serif); font-size: 1.4rem; font-weight: 300; color: #fff; line-height: 1.2; }
+.hp-cat-count { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-top: 0.3rem; }
+.hp-cat-posts { background: var(--color-cream, #FAF7F2); padding: 5rem 0; margin-top: 5rem; }
+.hp-cat-posts-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.hp-cat-section { margin-bottom: 4rem; }
+.hp-cat-section-title { font-family: var(--font-serif, 'Cormorant Garamond', serif); font-size: 1.8rem; font-weight: 300; color: var(--color-text-dark, #2C2118); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--color-sand, #E8DDD0); }
+.hp-post-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.hp-post-item { text-decoration: none; color: inherit; }
+.hp-post-item-img { aspect-ratio: 3/2; overflow: hidden; background: var(--color-sand, #E8DDD0); margin-bottom: 0.75rem; border-radius: 2px; }
+.hp-post-item-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+.hp-post-item:hover img { transform: scale(1.04); }
+.hp-post-item-title { font-family: var(--font-serif, 'Cormorant Garamond', serif); font-size: 1.1rem; color: var(--color-text-dark, #2C2118); line-height: 1.35; }
+.hp-post-item-date { font-size: 0.72rem; color: var(--color-muted, #8C7B6E); letter-spacing: 0.05em; margin-top: 0.3rem; }
+.hp-empty { font-size: 0.85rem; color: var(--color-muted, #8C7B6E); font-style: italic; }
+@media (max-width: 768px) { .hp-cats-grid { grid-template-columns: 1fr 1fr; } .hp-post-list { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .hp-cats-grid { grid-template-columns: 1fr; } .hp-post-list { grid-template-columns: 1fr; } }
+</style>
 
-<div class="section-inner">
-  <h1>{{ page.title }}</h1>
-  {% for cat in site.data.categories_display %}
-  <section id="{{ cat.slug }}">
-    <h2>{{ cat.name }}</h2>
-    {% assign posts = site.categories[cat.slug] %}
-    {% if posts.size > 0 %}
-    <ul>
-      {% for post in posts %}
-      <li>
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        <time>{{ post.date | date: '%d.%m.%Y' }}</time>
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p>Постів поки немає.</p>
-    {% endif %}
-  </section>
-  {% endfor %}
+{% assign cat_images = "https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1615873968403-89e068629265?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1565183928294-7d22f26f79b5?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=600&h=450&fit=crop,https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=450&fit=crop" | split: "," %}
+
+<div class="hp-page">
+  <p class="hp-page-eyebrow">Explore</p>
+  <h1 class="hp-page-title">Browse by <em>Category</em></h1>
+
+  <div class="hp-cats-grid">
+    {% assign cat_index = 0 %}
+    {% for category in site.categories %}
+      {% assign img = cat_images[cat_index] %}
+      <a href="#cat-{{ category[0] | slugify }}" class="hp-cat-card">
+        <img src="{{ img }}" alt="{{ category[0] }}" loading="lazy" />
+        <div class="hp-cat-overlay"></div>
+        <div class="hp-cat-label">
+          <p class="hp-cat-name">{{ category[0] }}</p>
+          <p class="hp-cat-count">{{ category[1].size }} {% if category[1].size == 1 %}post{% else %}posts{% endif %}</p>
+        </div>
+      </a>
+      {% assign cat_index = cat_index | plus: 1 %}
+    {% endfor %}
+  </div>
+</div>
+
+<div class="hp-cat-posts">
+  <div class="hp-cat-posts-inner">
+    {% for category in site.categories %}
+      <div class="hp-cat-section" id="cat-{{ category[0] | slugify }}">
+        <h2 class="hp-cat-section-title">{{ category[0] }}</h2>
+        {% if category[1].size > 0 %}
+          <div class="hp-post-list">
+            {% for post in category[1] %}
+              <a href="{{ post.url }}" class="hp-post-item">
+                <div class="hp-post-item-img">
+                  {% if post.image %}
+                    <img src="{{ post.image }}" alt="{{ post.title }}" loading="lazy" />
+                  {% else %}
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=400&h=267&fit=crop" alt="{{ post.title }}" loading="lazy" />
+                  {% endif %}
+                </div>
+                <p class="hp-post-item-title">{{ post.title }}</p>
+                <p class="hp-post-item-date">{{ post.date | date: "%d %b %Y" }}</p>
+              </a>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="hp-empty">No posts yet in this category.</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
 </div>

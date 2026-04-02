@@ -1,0 +1,206 @@
+---
+layout: base
+---
+<style>
+.hp-about-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 70vh;
+  margin-top: -1px;
+}
+.hp-about-hero-img {
+  overflow: hidden;
+}
+.hp-about-hero-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hp-about-hero-text {
+  background: var(--color-cream, #FAF7F2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5rem 4rem;
+}
+.hp-eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent, #B8963E);
+  margin-bottom: 1rem;
+}
+.hp-about-title {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  color: var(--color-text-dark, #2C2118);
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+.hp-about-title em { font-style: italic; color: var(--color-brown, #8B6F5E); }
+.hp-divider { width: 40px; height: 1px; background: var(--color-tan, #C8B49A); margin: 1.5rem 0; }
+.hp-about-body {
+  font-size: 1rem;
+  color: var(--color-muted, #8C7B6E);
+  line-height: 1.9;
+  max-width: 420px;
+}
+.hp-about-body p + p { margin-top: 1rem; }
+.hp-about-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.hp-about-pill {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-tan, #C8B49A);
+  color: var(--color-brown, #8B6F5E);
+  padding: 0.35rem 0.9rem;
+  border-radius: 2px;
+}
+
+/* Values section */
+.hp-about-values {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+.hp-about-value-title {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.3rem;
+  color: var(--color-text-dark, #2C2118);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.hp-about-value-icon {
+  color: var(--color-accent, #B8963E);
+}
+.hp-about-value-text {
+  font-size: 0.9rem;
+  color: var(--color-muted, #8C7B6E);
+  line-height: 1.8;
+}
+
+/* Pinterest CTA */
+.hp-about-cta {
+  background: var(--color-text-dark, #2C2118);
+  padding: 5rem 2rem;
+  text-align: center;
+}
+.hp-about-cta-title {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 300;
+  color: var(--color-cream, #FAF7F2);
+  margin-bottom: 1rem;
+}
+.hp-about-cta-title em { font-style: italic; color: var(--color-tan, #C8B49A); }
+.hp-about-cta-desc {
+  color: var(--color-tan, #C8B49A);
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+.hp-about-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--color-accent, #B8963E);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.9rem 2.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.hp-about-cta-btn:hover { background: var(--color-brown, #8B6F5E); }
+
+/* Disclosure */
+.hp-about-disclosure {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.hp-about-disclosure h3 {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--color-text-dark, #2C2118);
+  margin-bottom: 1rem;
+}
+.hp-about-disclosure p {
+  font-size: 0.85rem;
+  color: var(--color-muted, #8C7B6E);
+  line-height: 1.8;
+}
+
+@media (max-width: 900px) {
+  .hp-about-hero { grid-template-columns: 1fr; }
+  .hp-about-hero-img { max-height: 360px; }
+  .hp-about-hero-text { padding: 3rem 2rem; }
+  .hp-about-values { grid-template-columns: 1fr; gap: 2rem; }
+}
+</style>
+
+<div class="hp-about-hero">
+  <div class="hp-about-hero-img">
+    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=900&h=1100&fit=crop" alt="Styled interior" />
+  </div>
+  <div class="hp-about-hero-text">
+    <p class="hp-eyebrow">About HomePicked</p>
+    <h1 class="hp-about-title">Rooms we <em>imagine</em>,<br>pieces you can <em>own</em></h1>
+    <div class="hp-divider"></div>
+    <div class="hp-about-body">
+      <p>HomePicked is a blog about the spaces we live in — rendered, curated, and made real. We create AI-rendered interiors and then find every piece that makes them come to life.</p>
+      <p>No fluff, no filler. Just the actual products behind the look, chosen because they work — not because they pay well.</p>
+    </div>
+    <div class="hp-about-pills">
+      <span class="hp-about-pill">AI Renders</span>
+      <span class="hp-about-pill">Real Products</span>
+      <span class="hp-about-pill">Honest Picks</span>
+      <span class="hp-about-pill">Home Decor</span>
+    </div>
+  </div>
+</div>
+
+<div class="hp-about-values">
+  <div class="hp-about-value">
+    <h3 class="hp-about-value-title"><span class="hp-about-value-icon">✦</span> Carefully Rendered</h3>
+    <p class="hp-about-value-text">Every room starts as an AI render — a mood, a palette, a vision. We build spaces that feel real before a single product is bought.</p>
+  </div>
+  <div class="hp-about-value">
+    <h3 class="hp-about-value-title"><span class="hp-about-value-icon">✦</span> Genuinely Picked</h3>
+    <p class="hp-about-value-text">When we share a product it's because it fits — the right texture, the right scale, the right price. We only recommend what we'd actually use.</p>
+  </div>
+  <div class="hp-about-value">
+    <h3 class="hp-about-value-title"><span class="hp-about-value-icon">✦</span> Timeless Over Trendy</h3>
+    <p class="hp-about-value-text">Trends fade. We focus on pieces that age well — warm materials, clean lines, things that still feel right in five years.</p>
+  </div>
+</div>
+
+<div class="hp-about-cta">
+  <p class="hp-eyebrow" style="color: var(--color-accent, #B8963E);">Follow Along</p>
+  <h2 class="hp-about-cta-title">Find us on <em>Pinterest</em></h2>
+  <p class="hp-about-cta-desc">Daily renders, room inspiration, and curated finds — all in one place.</p>
+  <a href="https://pinterest.com/homepicked" target="_blank" class="hp-about-cta-btn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+    Visit our Pinterest
+  </a>
+</div>
+
+<div class="hp-about-disclosure">
+  <h3>Affiliate Disclosure</h3>
+  <p>Some links on this blog are affiliate links. If you click and make a purchase, we may earn a small commission — at no extra cost to you. We only share products we genuinely believe in. Thank you for supporting HomePicked.</p>
+</div>
