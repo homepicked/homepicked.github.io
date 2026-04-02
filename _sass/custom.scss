@@ -1187,19 +1187,25 @@ img { max-width: 100%; height: auto; display: block; }
 
 .footer-inner {
   max-width: var(--page-max);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  margin: 0 auto 40px;
+  display: flex;
+  flex-direction: column; /* Stacked on mobile */
   gap: 40px;
-  margin-bottom: 40px;
 }
 
-.footer-brand .brand-name {
+/* Brand Section */
+.footer-brand {
+  flex: 2; /* Takes more space on Desktop */
+}
+
+.footer-brand .footer-logo {
   font-family: var(--font-display);
   font-size: 1.4rem;
+  font-weight: bold;
   color: var(--ink);
   display: block;
   margin-bottom: 8px;
+  text-decoration: none;
 }
 
 .footer-tagline {
@@ -1207,30 +1213,74 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--muted);
   line-height: 1.6;
   margin: 0;
+  max-width: 400px;
 }
 
-.footer-links,
-.footer-social {
+/* Navigation Groups */
+.footer-nav {
+  display: flex;
+  flex-direction: column; /* Stacked columns on mobile */
+  gap: 32px;
+  flex: 3;
+}
+
+.footer-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-nav-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-nav-links {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding-top: 4px;
-
-  a {
-    font-size: 0.85rem;
-    color: var(--ink-3) !important;
-    &:hover { color: var(--terracotta) !important; }
-  }
 }
 
-.footer-copy {
-  grid-column: 1 / -1;
-  text-align: center;
+.footer-nav-links a {
+  font-size: 0.85rem;
+  color: var(--ink-3) !important;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-nav-links a:hover {
+  color: var(--terracotta) !important;
+}
+
+/* Footer Bottom (Centered) */
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 32px;
+  text-align: center; /* Centers the copyright */
+}
+
+.footer-bottom p {
   font-size: 0.78rem;
   color: var(--muted);
-  padding-top: 32px;
-  border-top: 1px solid var(--border);
   margin: 0;
+}
+
+/* DESKTOP STYLES */
+@media (min-width: 768px) {
+  .footer-inner {
+    flex-direction: row; /* Brand left, Nav right */
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .footer-nav {
+    flex-direction: row; /* Two columns side-by-side */
+    justify-content: flex-end;
+    gap: 80px;
+  }
 }
 
 /* ================================================================
