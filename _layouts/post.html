@@ -50,38 +50,37 @@ layout: default
   </div>
 
   <!-- Post Footer -->
-  <footer class="post-footer">
-    <div class="post-footer-inner">
-      {% if page.categories %}
-      <div class="post-taxonomy">
-        {% if page.categories %}
-        <div class="taxonomy-group">
-          <span class="taxonomy-label">Категорія:</span>
-          {% for cat in page.categories %}
-<a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/category/' | relative_url }}{{ cat }}">
-          {% endfor %}
-        </div>
+ <footer class="post-footer">
+  <div class="post-footer-inner">
+    
+    <div class="post-taxonomy">
+      <div class="taxonomy-group">
+        <span class="taxonomy-label">Category:</span>
+        {% if page.categories.size > 0 %}
+          <a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/category/' | append: page.categories.first | slugify | relative_url }}">
+            {{ page.categories.first }}
+          </a>
         {% endif %}
       </div>
-      {% endif %}
-
-      <!-- Prev / Next -->
-      <nav class="post-nav">
-        {% if page.previous.url %}
-        <a class="post-nav-link post-nav-link--prev" href="{{ page.previous.url | relative_url }}">
-          <span class="nav-dir">← Попередній</span>
-          <span class="nav-title">{{ page.previous.title }}</span>
-        </a>
-        {% else %}<div></div>{% endif %}
-        {% if page.next.url %}
-        <a class="post-nav-link post-nav-link--next" href="{{ page.next.url | relative_url }}">
-          <span class="nav-dir">Наступний →</span>
-          <span class="nav-title">{{ page.next.title }}</span>
-        </a>
-        {% endif %}
-      </nav>
     </div>
-  </footer>
+
+    <nav class="post-nav">
+      <div class="post-nav-prev">
+        {% if page.previous %}
+          <span class="nav-label">Previous Post</span>
+          <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
+        {% endif %}
+      </div>
+      <div class="post-nav-next">
+        {% if page.next %}
+          <span class="nav-label">Next Post</span>
+          <a href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a>
+        {% endif %}
+      </div>
+    </nav>
+    
+  </div>
+</footer>
 
   <!-- Related Posts -->
   {% assign related = site.posts | where_exp: "p", "p.url != page.url" | limit: 3 %}
