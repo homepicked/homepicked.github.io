@@ -1129,6 +1129,21 @@ img { max-width: 100%; height: auto; display: block; }
   .post-hero-img { margin-top: 0; padding: 0; }
   .post-hero-img img { border-radius: 0; }
 }
+
+/* Update the layout to center everything */
+.post-layout {
+  max-width: 800px; /* Constrains the whole article area */
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: block; /* Removed grid since TOC is gone */
+}
+
+.post-content {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--ink-2);
+  margin: 0 auto; /* Ensures text stays centered */
+}
 /* ================================================================
    FOOTER
    ================================================================ */
