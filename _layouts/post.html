@@ -11,7 +11,7 @@ layout: default
       <div class="post-breadcrumb">
         <a href="{{ '/' | relative_url }}">Головна</a>
         <span>›</span>
-        <a href="{{ '/categories/' | relative_url }}#{{ page.categories | first }}">
+        <a href="{{ '/categories/' | relative_url }}{{ page.categories | first }}">
       </div>
       {% endif %}
       <h1 class="post-title">{{ page.title }}</h1>
