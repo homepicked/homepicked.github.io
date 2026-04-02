@@ -104,7 +104,34 @@
     {% endfor %}
   </div>
 </div>
-
+  
+  
+<div style="display:none; width: 1px; height:1px; oppacity:0;">
+  <div class="hp-cat-posts-inner">
+    {% for cat in site.data.categories_display %}
+      <div class="hp-cat-section" id="{{ cat.slug }}">
+        <h2 class="hp-cat-section-title">{{ cat.name }}</h2>
+        {% assign cat_posts = site.categories[cat.name] %}
+        {% if cat_posts.size > 0 %}
+          <div class="hp-post-list">
+            {% for post in cat_posts %}
+              <a href="{{ post.url }}" class="hp-post-item">
+                <div class="hp-post-item-img">
+                  {% if post.image %}<img src="{{ post.image }}" alt="{{ post.title }}" loading="lazy" />
+                  {% else %}<img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=400&h=267&fit=crop" alt="{{ post.title }}" loading="lazy" />{% endif %}
+                </div>
+                <p class="hp-post-item-title">{{ post.title }}</p>
+                <p class="hp-post-item-date">{{ post.date | date: "%d %b %Y" }}</p>
+              </a>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="hp-empty">No posts yet in this category.</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
 
 
 </main>
