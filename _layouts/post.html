@@ -22,11 +22,7 @@ layout: default
       {% endif %}
       
       <div class="post-meta-bar">
-        <time datetime="{{ page.date | date_to_xmlschema }}">
-          {{ page.date | date: '%d %B %Y' }}
-        </time>
-        {% if page.author %}<span>· {{ page.author }}</span>{% endif %}
-        {% if page.read_time %}<span>· {{ page.read_time }} min read</span>{% endif %}
+        {% if page.author %}<span>{{ page.author }}</span>{% endif %}
       </div>
     </div>
   </header>
@@ -53,7 +49,7 @@ layout: default
           </a>
         {% endif %}
       </div>
-
+    {% if page.previous and page.next %}
       <nav class="post-nav">
         <div class="post-nav-item prev">
           {% if page.previous %}
@@ -68,6 +64,7 @@ layout: default
           {% endif %}
         </div>
       </nav>
+      {% endif %}
     </footer>
   </main>
 
