@@ -59,21 +59,13 @@ layout: default
   <!-- Post Footer -->
   <footer class="post-footer">
     <div class="post-footer-inner">
-      {% if page.categories or page.tags %}
+      {% if page.categories %}
       <div class="post-taxonomy">
         {% if page.categories %}
         <div class="taxonomy-group">
           <span class="taxonomy-label">Категорія:</span>
           {% for cat in page.categories %}
 <a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/categories/' | relative_url }}/{{ cat }}">
-          {% endfor %}
-        </div>
-        {% endif %}
-        {% if page.tags %}
-        <div class="taxonomy-group">
-          <span class="taxonomy-label">Теги:</span>
-          {% for tag in page.tags %}
-<a class="taxonomy-badge" href="{{ '/tags/' | relative_url }}/{{ tag }}">
           {% endfor %}
         </div>
         {% endif %}
