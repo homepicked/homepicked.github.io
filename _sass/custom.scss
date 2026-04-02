@@ -864,7 +864,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ================================================================
-   POST PAGE — FULL STYLES
+   POST PAGE — FULL STYLES (MATCHED TO YOUR HTML)
    ================================================================ */
 
 .post-page {
@@ -956,19 +956,18 @@ img { max-width: 100%; height: auto; display: block; }
   display: block;
 }
 
-/* --- Main Layout (Single Column Focus) --- */
-.post-layout {
-  max-width: 800px; /* Центрування контенту */
-  margin: 0 auto;
+/* --- Твій СЕЛЕКТОР ТЕКСТУ (ЦЕНТРУВАННЯ) --- */
+.post-main {
+  max-width: 740px; /* Оптимальна ширина для читання тексту */
+  margin: 0 auto;   /* Центрування */
   padding: 40px 24px;
-  display: block; 
+  display: block;   /* Замість grid, щоб прибрати порожнечу справа */
 }
 
 .post-content {
   font-size: 1.15rem;
   line-height: 1.8;
   color: var(--ink-2);
-  margin: 0 auto;
 }
 
 /* --- Typography inside Content --- */
@@ -1023,9 +1022,8 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* --- Post Footer (Taxonomy & Nav) --- */
 .post-footer {
-  max-width: 800px;
-  margin: 80px auto 0;
-  padding: 40px 24px;
+  margin-top: 60px; /* Трохи менше відступу, бо все в одному контейнері */
+  padding: 40px 0;
   border-top: 1px solid var(--border);
 }
 
@@ -1135,7 +1133,7 @@ img { max-width: 100%; height: auto; display: block; }
   .post-nav { grid-template-columns: 1fr; }
   .post-hero-img { margin-top: 0; padding: 0; }
   .post-hero-img img { border-radius: 0; }
-  .post-layout { padding: 40px 20px; }
+  .post-main { padding: 40px 20px; } /* Твій селектор */
 }
 /* ================================================================
    FOOTER
