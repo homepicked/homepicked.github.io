@@ -55,7 +55,6 @@
       <!-- Desktop Nav -->
       <nav class="site-nav" aria-label="Головне меню">
         <ul class="nav-list">
-          <li><a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Головна</a></li>
           <li><a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Home</a></li>
           {% for tab in site.tabs %}
           <li>
@@ -99,10 +98,10 @@
     <!-- Mobile Nav Drawer -->
     <nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
       <ul>
-        <li><a href="{{ '/' | relative_url }}">Головна</a></li>
-        <li><a href="{{ '/categories/' | relative_url }}">Категорії</a></li>
-        <li><a href="{{ '/tags/' | relative_url }}">Теги</a></li>
-        <li><a href="{{ '/about/' | relative_url }}">Про мене</a></li>
+        <li><a href="{{ '/' | relative_url }}">Main</a></li>
+        <li><a href="{{ '/categories/' | relative_url }}">Categories</a></li>
+        <li><a href="{{ '/tags/' | relative_url }}">Tags</a></li>
+        <li><a href="{{ '/about/' | relative_url }}">About</a></li>
       </ul>
     </nav>
   </header>
@@ -110,8 +109,8 @@
   <!-- Search bar (hidden by default) -->
   <div class="search-overlay" id="search-overlay">
     <div class="search-box">
-      <input type="text" id="search-input" placeholder="Пошук по блогу…" autocomplete="off" />
-      <button id="search-close" aria-label="Закрити пошук">✕</button>
+      <input type="text" id="search-input" placeholder="Search" autocomplete="off" />
+      <button id="search-close" aria-label="Closeк">✕</button>
     </div>
     <div id="search-results"></div>
   </div>
