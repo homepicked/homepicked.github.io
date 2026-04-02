@@ -1,31 +1,60 @@
-# _data/categories_display.yml
-- name: Room Design
-  slug: room-design
+- name: Living Room Inspo
+  slug: living-room
   icon: 🛋️
-  description: Layout ideas and styles — from minimalism to boho
-  url: /categories/#room-design
-- name: Decor
-  slug: decor
-  icon: 🏺
-  description: Figurines, candles, frames and details that bring a space to life
-  url: /categories/#decor
-- name: Flowers & Plants
-  slug: flowers-plants
-  icon: 🌿
-  description: Houseplants, floristry and green corners at home
-  url: /categories/#flowers-plants
-- name: Kitchen
-  slug: kitchen
+  description: Layout ideas, color palettes and furniture inspiration for your living room
+  url: /categories/#living-room
+- name: Nursery & Baby Room
+  slug: nursery-baby
+  icon: 🍼
+  description: Sweet and functional ideas for your little one's space
+  url: /categories/#nursery-baby
+- name: Kitchen & Dining
+  slug: kitchen-dining
   icon: 🍳
-  description: Organisation, cookware and a cozy kitchen atmosphere
-  url: /categories/#kitchen
-- name: Bedroom
+  description: Organisation, cookware and cozy kitchen vibes for the heart of your home
+  url: /categories/#kitchen-dining
+- name: Dream Closet
+  slug: dream-closet
+  icon: 👗
+  description: Walk-in goals, wardrobe hacks and storage that actually sparks joy
+  url: /categories/#dream-closet
+- name: Outdoor & Patio
+  slug: outdoor-patio
+  icon: 🌿
+  description: Balconies, gardens and outdoor corners you never want to leave
+  url: /categories/#outdoor-patio
+- name: Entryway & Hallway
+  slug: entryway-hallway
+  icon: 🚪
+  description: First impressions that make every homecoming feel special
+  url: /categories/#entryway-hallway
+- name: Bedroom Vibes
   slug: bedroom
   icon: 🌙
-  description: Textiles, lighting and everything for a good rest
+  description: Textiles, lighting and everything for a restful, beautiful bedroom
   url: /categories/#bedroom
-- name: Finds
-  slug: finds
+- name: Cozy Workspace
+  slug: workspace
+  icon: 💻
+  description: Home office setups and desk inspo for focus and comfort
+  url: /categories/#workspace
+- name: Bathroom Goals
+  slug: bathroom
+  icon: 🛁
+  description: Spa-worthy ideas and small bathroom transformations
+  url: /categories/#bathroom
+- name: Seasonal Decor
+  slug: seasonal-decor
+  icon: 🌸
+  description: Holiday and seasonal styling — spring, Easter, Christmas and beyond
+  url: /categories/#seasonal-decor
+- name: Home Glow Up
+  slug: home-glow-up
   icon: ✨
-  description: Interesting home items from Pinterest and other sources
-  url: /categories/#finds
+  description: Curated home finds and products we actually love
+  url: /categories/#home-glow-up
+- name: Home Ideas & Guides
+  slug: home-ideas
+  icon: 💡
+  description: 20 ideas, room makeovers and practical guides for every space
+  url: /categories/#home-ideas
