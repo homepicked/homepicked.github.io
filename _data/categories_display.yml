@@ -1,35 +1,29 @@
 # _data/categories_display.yml
-
 - name: Room Design
   slug: room-design
   icon: 🛋️
   description: Layout ideas and styles — from minimalism to boho
   url: /categories/#room-design
-
 - name: Decor
   slug: decor
   icon: 🏺
   description: Figurines, candles, frames and details that bring a space to life
   url: /categories/#decor
-
 - name: Flowers & Plants
-  slug: flowers
+  slug: flowers-plants
   icon: 🌿
   description: Houseplants, floristry and green corners at home
-  url: /categories/#flowers
-
+  url: /categories/#flowers-plants
 - name: Kitchen
   slug: kitchen
   icon: 🍳
   description: Organisation, cookware and a cozy kitchen atmosphere
   url: /categories/#kitchen
-
 - name: Bedroom
   slug: bedroom
   icon: 🌙
   description: Textiles, lighting and everything for a good rest
   url: /categories/#bedroom
-
 - name: Finds
   slug: finds
   icon: ✨
