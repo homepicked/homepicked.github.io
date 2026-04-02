@@ -1,0 +1,191 @@
+---
+layout: default
+---
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-eyebrow">{{ page.eyebrow | default: '✦ A blog about home decor' }}</p>
+      <h1 class="hero-title">{{ page.hero_title | default: site.title }}</h1>
+      <p class="hero-subtitle">{{ page.hero_subtitle | default: site.description }}</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#latest-posts">Browse posts</a>
+        <a class="btn-outline" href="{{ '/about/' | relative_url }}">About</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      {% if page.hero_image %}
+        <img src="{{ page.hero_image | relative_url }}" alt="{{ site.title }}" class="hero-img" />
+      {% else %}
+        <div class="hero-placeholder">
+          <div class="hp-card hp-card--1"></div>
+          <div class="hp-card hp-card--2"></div>
+          <div class="hp-card hp-card--3"></div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CATEGORIES ═══════════════════ -->
+{% if site.data.categories_display %}
+<section class="categories-section">
+  <div class="section-inner">
+    <header class="section-header">
+      <span class="section-label">Browse</span>
+      <h2 class="section-title">Topics</h2>
+    </header>
+    <div class="categories-grid">
+      {% for cat in site.data.categories_display %}
+      <a class="cat-card" href="{{ cat.url | relative_url }}">
+        <div class="cat-icon">{{ cat.icon }}</div>
+        <h3 class="cat-name">{{ cat.name }}</h3>
+        <p class="cat-desc">{{ cat.description }}</p>
+        <span class="cat-count">
+          {% assign count = site.categories[cat.slug] | size %}
+          {{ count }} {% if count == 1 %}post{% else %}posts{% endif %}
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══════════════════ FEATURED POSTS ═══════════════════ -->
+{% assign featured = site.posts | where: "featured", true | limit: 3 %}
+{% if featured.size > 0 %}
+<section class="featured-section">
+  <div class="section-inner">
+    <header class="section-header">
+      <span class="section-label">Editor's pick</span>
+      <h2 class="section-title">Featured posts</h2>
+    </header>
+    <div class="featured-grid">
+      {% for post in featured %}
+      <article class="featured-card {% if forloop.first %}featured-card--wide{% endif %}">
+        {% if post.image %}
+        <a class="card-img-wrap" href="{{ post.url | relative_url }}">
+          <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy" />
+        </a>
+        {% else %}
+        <a class="card-img-wrap card-img-wrap--empty" href="{{ post.url | relative_url }}">
+          <span>{{ post.categories | first | default: '🏡' }}</span>
+        </a>
+        {% endif %}
+        <div class="card-body">
+          {% if post.categories %}
+          {% assign cat_first = post.categories | first %}
+          <a class="card-category" href="{{ '/categories/' | relative_url }}#{{ cat_first | slugify }}">
+            {{ cat_first }}
+          </a>
+          {% endif %}
+          <h3 class="card-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <p class="card-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+          <div class="card-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%d.%m.%Y' }}</time>
+            {% if post.read_time %}<span>· {{ post.read_time }} min read</span>{% endif %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══════════════════ LATEST POSTS ═══════════════════ -->
+<section class="latest-section" id="latest-posts">
+  <div class="section-inner">
+    <header class="section-header section-header--flex">
+      <div>
+        <span class="section-label">Feed</span>
+        <h2 class="section-title">Latest posts</h2>
+      </div>
+      <a class="section-more" href="{{ '/archives/' | relative_url }}">All posts →</a>
+    </header>
+
+    <div class="posts-grid">
+      {% assign latest = site.posts | limit: 6 %}
+      {% for post in latest %}
+      <article class="post-card">
+        {% if post.image %}
+        <a class="post-card-img" href="{{ post.url | relative_url }}">
+          <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy" />
+        </a>
+        {% else %}
+        <a class="post-card-img post-card-img--empty" href="{{ post.url | relative_url }}">
+          <span>{{ post.categories | first | default: '🏡' }}</span>
+        </a>
+        {% endif %}
+        <div class="post-card-body">
+          {% if post.categories %}
+          {% assign cat_slug = post.categories | first | slugify %}
+          <a class="post-cat-badge" href="{{ '/categories/' | relative_url }}#{{ cat_slug }}">
+            {{ post.categories | first }}
+          </a>
+          {% endif %}
+          <h3 class="post-card-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </h3>
+          <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 90 }}</p>
+          <div class="post-card-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%d %b %Y' }}</time>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="section-cta">
+      <a class="btn-outline" href="{{ '/archives/' | relative_url }}">Load more posts</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ABOUT STRIP ═══════════════════ -->
+<section class="about-strip">
+  <div class="section-inner about-strip-inner">
+    {% if site.avatar %}
+    <div class="about-avatar">
+      <img src="{{ site.avatar | relative_url }}" alt="{{ site.title }}" />
+    </div>
+    {% endif %}
+    <div class="about-text">
+      <span class="section-label">About</span>
+      <h2>{{ page.about_title | default: 'Why this blog?' }}</h2>
+      <p>{{ page.about_text | default: site.description }}</p>
+      <a class="btn-primary" href="{{ '/about/' | relative_url }}">Learn more</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="footer-logo" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <p class="footer-tagline">{{ site.description }}</p>
+    </div>
+
+    <nav class="footer-nav">
+      <div class="footer-nav-group">
+        <span class="footer-nav-label">Pages</span>
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+        <a href="{{ '/archives/' | relative_url }}">All posts</a>
+        <a href="{{ '/categories/' | relative_url }}">Categories</a>
+      </div>
+      <div class="footer-nav-group">
+        <span class="footer-nav-label">Topics</span>
+        {% for cat in site.data.categories_display %}
+        <a href="{{ cat.url | relative_url }}">{{ cat.name }}</a>
+        {% endfor %}
+      </div>
+    </nav>
+
+  <div class="footer-bottom">
+    <p>© {{ 'now' | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
+  </div>
+</footer>
