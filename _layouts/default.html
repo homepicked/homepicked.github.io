@@ -1,6 +1,3 @@
----
-layout: default
----
 
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'uk' }}" data-mode="{{ site.theme_mode }}">
@@ -25,9 +22,6 @@ layout: default
   <meta property="og:url" content="{{ page.url | absolute_url }}" />
   {% if page.image %}
   <meta property="og:image" content="{{ page.image | absolute_url }}" />
-  <div class="post-hero-img">
-    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
-  </div>
   {% endif %}
 
   <!-- Favicon -->
@@ -44,149 +38,137 @@ layout: default
   {% seo %}
 </head>
 
-<div class="post-page">
+<body>
 
-  <!-- Post Header -->
-  <header class="post-header">
-    <div class="post-header-inner">
-      {% if page.categories %}
-      <div class="post-breadcrumb">
-        <a href="{{ '/' | relative_url }}">Home</a>
-        <span>›</span>
-        <a href="{{ '/category/' | relative_url }}{{ page.categories | first }}">
-      </div>
-      {% endif %}
-      <h1 class="post-title">{{ page.title }}</h1>
-      {% if page.description %}
-      <p class="post-description">{{ page.description }}</p>
-      {% endif %}
-      <div class="post-meta-bar">
-        <time datetime="{{ page.date | date_to_xmlschema }}">
-          {{ page.date | date: '%d %B %Y' }}
-        </time>
-        {% if page.author %}<span>· {{ page.author }}</span>{% endif %}
-        {% if page.read_time %}<span>· {{ page.read_time }} min reading</span>{% endif %}
-      </div>
-    </div>
-  </header>
+  <!-- ═══════════════════════════════ NAVBAR ═══════════════════════════════ -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
 
-  <!-- Hero Image -->
-  {% if page.image %}
-  <div class="post-hero-img">
-    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
-  </div>
-  {% endif %}
+      <!-- Logo / Site Name -->
+      <a class="site-brand" href="{{ '/' | relative_url }}">
+        {% if site.avatar %}
+          <img class="brand-avatar" src="{{ site.avatar | relative_url }}" alt="{{ site.title }}" />
+        {% endif %}
+        <span class="brand-name">{{ site.title }}</span>
+      </a>
 
-  <!-- Article -->
-  <div class="post-layout">
-    <!-- Content -->
-    <article class="post-content e-content">
-      {{ content }}
-    </article>
+      <!-- Desktop Nav -->
+      <nav class="site-nav" aria-label="Головне меню">
+        <ul class="nav-list">
+          <li><a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Головна</a></li>
+          <li><a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Home</a></li>
+          {% for tab in site.tabs %}
+          <li>
+            <a class="nav-link {% if page.url contains tab.url %}active{% endif %}"
+               href="{{ tab.url | relative_url }}">
+              {{ tab.title }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
 
-    <!-- Table of Contents (floating, desktop only) -->
-    <aside class="post-toc" id="toc-container">
-      <p class="toc-label">Content</p>
-      <div id="toc"></div>
-    </aside>
-  </div>
+      <!-- Right actions -->
+      <div class="header-actions">
+        <!-- Search toggle -->
+        <button class="icon-btn" id="search-trigger" aria-label="Пошук" title="Пошук">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+        <!-- Dark mode toggle -->
+        <button class="icon-btn" id="mode-toggle" aria-label="Змінити тему">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <!-- Mobile burger -->
+        <button class="burger" id="nav-toggle" aria-label="Меню" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
 
-  <!-- Post Footer -->
-  <footer class="post-footer">
-    <div class="post-footer-inner">
-      {% if page.categories or page.tags %}
-      <div class="post-taxonomy">
-        {% if page.categories %}
-        <div class="taxonomy-group">
-          <span class="taxonomy-label">Category:</span>
-          {% for cat in page.categories %}
-<a class="taxonomy-badge taxonomy-badge--cat" href="{{ '/category/' | relative_url }}{{ cat }}">
-          {% endfor %}
-        </div>
-        {% endif %}
-      </div>
-      {% endif %}
+    </div>
 
-      <!-- Prev / Next -->
-      <nav class="post-nav">
-        {% if page.previous.url %}
-        <a class="post-nav-link post-nav-link--prev" href="{{ page.previous.url | relative_url }}">
-          <span class="nav-dir">← Previous</span>
-          <span class="nav-title">{{ page.previous.title }}</span>
-        </a>
-        {% else %}<div></div>{% endif %}
-        {% if page.next.url %}
-        <a class="post-nav-link post-nav-link--next" href="{{ page.next.url | relative_url }}">
-          <span class="nav-dir">Next →</span>
-          <span class="nav-title">{{ page.next.title }}</span>
-        </a>
-        {% endif %}
-      </nav>
-    </div>
-  </footer>
+    <!-- Mobile Nav Drawer -->
+    <nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
+      <ul>
+        <li><a href="{{ '/' | relative_url }}">Головна</a></li>
+        <li><a href="{{ '/categories/' | relative_url }}">Категорії</a></li>
+        <li><a href="{{ '/tags/' | relative_url }}">Теги</a></li>
+        <li><a href="{{ '/about/' | relative_url }}">Про мене</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <!-- Related Posts -->
-  {% assign related = site.posts | where_exp: "p", "p.url != page.url" | limit: 3 %}
-  {% if related.size > 0 %}
-  <section class="related-posts">
-    <div class="section-inner">
-      <h3 class="related-title">Read more</h3>
-      <div class="posts-grid posts-grid--3">
-        {% for post in related %}
-        <article class="post-card">
-          {% if post.image %}
-          <a class="post-card-img" href="{{ post.url | relative_url }}">
-            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy" />
-          </a>
-          {% else %}
-          <a class="post-card-img post-card-img--empty" href="{{ post.url | relative_url }}">
-            <span>{{ post.categories | first | default: '🏡' }}</span>
-          </a>
-          {% endif %}
-          <div class="post-card-body">
-            <h4 class="post-card-title">
-              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            </h4>
-            <time>{{ post.date | date: '%d %b %Y' }}</time>
-          </div>
-        </article>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-  {% endif %}
-</div>
+  <!-- Search bar (hidden by default) -->
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="Пошук по блогу…" autocomplete="off" />
+      <button id="search-close" aria-label="Закрити пошук">✕</button>
+    </div>
+    <div id="search-results"></div>
+  </div>
 
-<!-- Auto-generate TOC via JS -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const headings = document.querySelectorAll('.post-content h2, .post-content h3');
-    const toc = document.getElementById('toc');
-    if (!toc || headings.length < 3) {
-      document.getElementById('toc-container')?.classList.add('hidden');
-      return;
-    }
-    const ul = document.createElement('ul');
-    headings.forEach((h, i) => {
-      if (!h.id) h.id = 'heading-' + i;
-      const li = document.createElement('li');
-      li.className = h.tagName === 'H3' ? 'toc-sub' : '';
-      li.innerHTML = `<a href="#${h.id}">${h.textContent}</a>`;
-      ul.appendChild(li);
-    });
-    toc.appendChild(ul);
+  <!-- ═══════════════════════════════ MAIN ═══════════════════════════════ -->
+  <main id="main-content">
+    {{ content }}
+  </main>
 
-    // Highlight active heading on scroll
-    const links = toc.querySelectorAll('a');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          links.forEach(l => l.classList.remove('active'));
-          const active = toc.querySelector(`a[href="#${e.target.id}"]`);
-          active?.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-20% 0px -70% 0px' });
-    headings.forEach(h => observer.observe(h));
-  });
-</script>
+
+  <!-- Scripts -->
+  <script src="{{ '/assets/js/dist/theme.min.js' | relative_url }}"></script>
+  <script>
+    // Dark mode toggle
+    const modeBtn = document.getElementById('mode-toggle');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme-mode');
+    if (saved) html.setAttribute('data-mode', saved);
+
+    modeBtn?.addEventListener('click', () => {
+      const current = html.getAttribute('data-mode');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-mode', next);
+      localStorage.setItem('theme-mode', next);
+    });
+
+    // Mobile nav
+    const burger = document.getElementById('nav-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    burger?.addEventListener('click', () => {
+      const open = burger.getAttribute('aria-expanded') === 'true';
+      burger.setAttribute('aria-expanded', String(!open));
+      mobileNav.setAttribute('aria-hidden', String(open));
+      mobileNav.classList.toggle('open', !open);
+      burger.classList.toggle('open', !open);
+    });
+
+    // Search overlay
+    document.getElementById('search-trigger')?.addEventListener('click', () => {
+      document.getElementById('search-overlay').classList.add('open');
+      document.getElementById('search-input').focus();
+    });
+    document.getElementById('search-close')?.addEventListener('click', () => {
+      document.getElementById('search-overlay').classList.remove('open');
+    });
+
+    // Sticky header on scroll
+    const header = document.getElementById('site-header');
+    let lastY = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      header.classList.toggle('scrolled', y > 60);
+      header.classList.toggle('hidden', y > lastY + 10 && y > 200);
+      header.classList.toggle('visible', y < lastY - 10);
+      lastY = y;
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
