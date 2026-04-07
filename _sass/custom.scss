@@ -625,9 +625,8 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ================================================================
-   FEATURED POSTS
+   FEATURED POSTS — виправлений layout
    ================================================================ */
-
 .featured-section {
   padding: var(--section-pad) 24px;
   background: var(--cream-2);
@@ -635,9 +634,18 @@ img { max-width: 100%; height: auto; display: block; }
 
 .featured-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "wide  side"
+    "small .   ";
   gap: 24px;
 }
+
+/* Кожна картка отримує явну позицію */
+.featured-card:nth-child(1) { grid-area: wide; }
+.featured-card:nth-child(2) { grid-area: side; }
+.featured-card:nth-child(3) { grid-area: small; }
 
 .featured-card {
   background: var(--warm-white);
@@ -647,20 +655,17 @@ img { max-width: 100%; height: auto; display: block; }
   transition: all 0.25s var(--ease);
   border: 1px solid var(--border);
 }
-
 .featured-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
 }
 
-/* Wide first card spans 2 columns */
+/* Перша картка — горизонтальна (фото + текст поряд) */
 .featured-card--wide {
-  grid-column: span 2;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: stretch;
 }
-
 .featured-card--wide .card-img-wrap {
   height: 100%;
   min-height: 280px;
@@ -672,18 +677,15 @@ img { max-width: 100%; height: auto; display: block; }
   overflow: hidden;
   aspect-ratio: 4 / 3;
 }
-
 .card-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s var(--ease);
 }
-
 .card-img-wrap:hover img {
   transform: scale(1.04);
 }
-
 .card-img-wrap--empty {
   background: var(--cream-3);
   display: flex;
@@ -698,7 +700,6 @@ img { max-width: 100%; height: auto; display: block; }
   flex-direction: column;
   justify-content: center;
 }
-
 .card-category {
   display: inline-block;
   font-size: 0.7rem;
@@ -708,19 +709,12 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--terracotta) !important;
   margin-bottom: 10px;
 }
-
 .card-title {
   font-size: 1.25rem;
   margin-bottom: 10px;
 }
-
-.card-title a {
-  color: var(--ink) !important;
-}
-
-.card-title a:hover {
-  color: var(--terracotta) !important;
-}
+.card-title a { color: var(--ink) !important; }
+.card-title a:hover { color: var(--terracotta) !important; }
 
 .card-excerpt {
   font-size: 0.87rem;
@@ -728,10 +722,27 @@ img { max-width: 100%; height: auto; display: block; }
   line-height: 1.6;
   margin-bottom: 14px;
 }
-
 .card-meta {
   font-size: 0.78rem;
   color: var(--muted);
+}
+
+/* ── Адаптив ── */
+@media (max-width: 768px) {
+  .featured-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "wide"
+      "side"
+      "small";
+  }
+  .featured-card--wide {
+    grid-template-columns: 1fr;
+  }
+  .featured-card--wide .card-img-wrap {
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
 }
 /* ================================================================
    LATEST POSTS GRID
