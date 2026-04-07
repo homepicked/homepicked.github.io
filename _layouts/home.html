@@ -104,10 +104,8 @@ layout: default
       </div>
       <a class="section-more" href="{{ '/archives/' | relative_url }}">All posts →</a>
     </header>
-
     <div class="posts-grid">
-      {% assign latest = site.posts | limit: 6 %}
-      {% for post in latest %}
+      {% for post in site.posts limit:6 %}
       <article class="post-card">
         {% if post.image %}
         <a class="post-card-img" href="{{ post.url | relative_url }}">
@@ -135,7 +133,6 @@ layout: default
       </article>
       {% endfor %}
     </div>
-
     <div class="section-cta">
       <a class="btn-outline" href="{{ '/archives/' | relative_url }}">Load more posts</a>
     </div>
