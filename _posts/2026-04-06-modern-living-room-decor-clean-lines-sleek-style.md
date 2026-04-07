@@ -5,7 +5,7 @@ date: 2026-04-06 00:00:00 +0000
 categories: [living-room]
 tags: [homedecor, interiordesign, roominspo]
 image: /assets/img/posts/modern-living-room-decor-clean-lines-sleek-style.jpg
-featured: false
+featured: true
 ---
 
 Immerse yourself in the tranquility of this elegant living room, where modern design meets a serene color palette. Dominated by shades of green and punctuated with clean lines and subtle textures, this space exudes a sense of calm and order. Unwind on the sleek sofa, framed by stylish curtains and accent pieces that elevate the overall aesthetic. Incorporate similar pieces and color schemes in your own living room for a chic, modern look. Don't forget to add a touch of greenery to infuse life into any space!
