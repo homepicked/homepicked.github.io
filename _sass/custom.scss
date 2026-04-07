@@ -939,7 +939,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* --- Hero Image --- */
 .post-hero-img {
-  max-width: 1100px;
+  max-width: 550px;
   margin: -30px auto 60px; /* Наплив на хедер */
   padding: 0 24px;
   position: relative;
@@ -949,12 +949,14 @@ img { max-width: 100%; height: auto; display: block; }
 .post-hero-img img {
   width: 100%;
   height: auto;
-  max-height: 650px;
-  object-fit: cover;
+  width: 100%;
+  max-height: 750px;
+  object-fit: contain;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
   display: block;
 }
+
 
 /* --- Твій СЕЛЕКТОР ТЕКСТУ (ЦЕНТРУВАННЯ) --- */
 .post-main {
